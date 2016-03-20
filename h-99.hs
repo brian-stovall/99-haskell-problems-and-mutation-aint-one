@@ -51,3 +51,14 @@ pack as@(a:_) = takeWhile (== a) as : (pack $ dropWhile (== a) as)
 --10
 encode :: (Eq a) => [a] -> [(Int, a)]
 encode as = map (\as -> (length as, head as)) $ pack as
+
+--11-13 TODO
+
+--14
+dupli :: [a] -> [a]
+dupli [] = []
+dupli (x:xs) = x : x : dupli xs
+
+--15 TODO
+
+
