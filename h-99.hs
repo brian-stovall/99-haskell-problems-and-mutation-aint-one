@@ -42,3 +42,12 @@ isPalindrome as
 compress :: (Eq a) => [a] -> [a]
 compress (a:[]) = [a]
 compress (a:as) = if (a == head as) then compress as else a : (compress as)
+
+--9
+pack :: (Eq a) => [a] -> [[a]]
+pack [] = []
+pack as@(a:_) = takeWhile (== a) as : (pack $ dropWhile (== a) as)
+
+--10
+encode :: (Eq a) => [a] -> [(Int, a)]
+encode as = map (\as -> (length as, head as)) $ pack as
