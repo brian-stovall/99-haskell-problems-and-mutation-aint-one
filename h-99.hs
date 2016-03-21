@@ -59,6 +59,17 @@ dupli :: [a] -> [a]
 dupli [] = []
 dupli (x:xs) = x : x : dupli xs
 
---15 TODO
+--15
+repli :: Int -> [a] -> [a]
+repli 0 _  = []
+repli _ [] = []
+repli n (a:as) 
+  | n == 0    = []
+  | otherwise = (repeat' n a) ++ (repli n as)
+
+repeat' :: Int -> a -> [a]
+repeat' 0 _ = []
+repeat' n x = x : repeat' (n-1) x
+
 
 
