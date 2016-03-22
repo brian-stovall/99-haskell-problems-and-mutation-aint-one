@@ -89,3 +89,16 @@ split' n ls@(a:as)
   | otherwise = (a : fst (sep), snd (sep))
     where sep = split' (n-1) as
 
+--18
+slice :: Int -> Int -> [a] -> [a]
+slice m n as = take (n - m + 1) . drop (m - 1) $ as
+
+--19
+rotate :: Int -> [a] -> [a]
+rotate 0 ls = ls
+rotate n ls@(a:as)
+  | (abs n) > size = rotate (rem (abs n) size) ls
+  | n < 0         = rotate (size + n) ls
+  | otherwise     = rotate (n - 1) (as ++ [a])
+    where size = length ls
+
