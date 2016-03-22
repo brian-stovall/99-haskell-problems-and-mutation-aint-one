@@ -71,5 +71,21 @@ repeat' :: Int -> a -> [a]
 repeat' 0 _ = []
 repeat' n x = x : repeat' (n-1) x
 
+--16
+dropEvery :: Int -> [a] -> [a]
+dropEvery 0 as = as
+dropEvery _ [] = []
+dropEvery n as = take (n-1) as ++ dropEvery n (drop (n) as)
 
+--17
+split :: Int -> [a] -> ([a], [a])
+split n as = (take n as, drop n as)
+
+--without take/drop
+split' :: Int -> [a] -> ([a], [a])
+split' n [] = ([],[])
+split' n ls@(a:as)
+  | n == 0    = ([], ls)
+  | otherwise = (a : fst (sep), snd (sep))
+    where sep = split' (n-1) as
 
