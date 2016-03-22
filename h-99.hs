@@ -95,6 +95,7 @@ slice m n as = take (n - m + 1) . drop (m - 1) $ as
 
 --19
 rotate :: Int -> [a] -> [a]
+rotate _ [] = []
 rotate 0 ls = ls
 rotate n ls@(a:as)
   | (abs n) > size = rotate (rem (abs n) size) ls
@@ -102,3 +103,10 @@ rotate n ls@(a:as)
   | otherwise     = rotate (n - 1) (as ++ [a])
     where size = length ls
 
+--20
+removeAt :: Int -> [a] -> (a, [a])
+removeAt _ [] = error "Call to removeAt with empty list"
+removeAt n ls = (del, (init front) ++ back)
+  where front = take n ls
+        back  = drop n ls
+        del   = last front
