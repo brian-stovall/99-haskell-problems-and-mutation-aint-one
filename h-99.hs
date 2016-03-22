@@ -58,7 +58,25 @@ pack as@(a:_) = takeWhile (== a) as : (pack $ dropWhile (== a) as)
 encode :: (Eq a) => [a] -> [(Int, a)]
 encode as = map (\as -> (length as, head as)) $ pack as
 
---11-13 TODO
+--11
+data Encoding a = Single a | Multiple (Int, a) deriving Show
+
+encode' :: (Eq a) => [a] -> [Encoding a]
+encode' [] = []
+encode' as = map helper . encode $ as
+  where
+    helper (1,x) = Single x
+    helper (n,x) = Multiple (n,x)
+
+--12
+decodeOne :: Encoding a -> [a]
+decodeOne (Single a) = [a]
+decodeOne (Multiple (n, a)) = repeat' n a
+
+decode :: [Encoding a] -> [a]
+decode xs = concatMap decodeOne xs
+
+--13 TODO
 
 --14
 dupli :: [a] -> [a]
