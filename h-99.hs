@@ -36,7 +36,13 @@ isPalindrome as
   | as == myReverse as = True
   | otherwise          = False
 
---7 TODO
+--7
+data NestedList a = Elem a | List [NestedList a] deriving Show
+
+flatten' :: NestedList a -> [a]
+flatten' (List []) = []
+flatten' (Elem a)  = [a]
+flatten' (List (x:xs)) = flatten' x ++ flatten' (List xs)
 
 --8
 compress :: (Eq a) => [a] -> [a]
