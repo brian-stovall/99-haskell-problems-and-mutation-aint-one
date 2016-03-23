@@ -76,7 +76,7 @@ decodeOne (Multiple (n, a)) = repeat' n a
 decode :: [Encoding a] -> [a]
 decode xs = concatMap decodeOne xs
 
---13 TODO
+--13 
 
 --14
 dupli :: [a] -> [a]
@@ -134,3 +134,11 @@ removeAt n ls = (del, (init front) ++ back)
   where front = take n ls
         back  = drop n ls
         del   = last front
+
+--21
+insertAt :: a -> [a] -> Int -> [a]
+insertAt a as n = take (n - 1) as ++ [a] ++ drop (n - 1) as
+
+--22
+range :: Int -> Int -> [Int]
+range x y = [x..y]
