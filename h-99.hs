@@ -142,3 +142,29 @@ insertAt a as n = take (n - 1) as ++ [a] ++ drop (n - 1) as
 --22
 range :: Int -> Int -> [Int]
 range x y = [x..y]
+
+--23 - 30 TODO
+
+--31
+isPrime :: Int -> Bool
+isPrime n
+  | n == 1       = False
+  | n == 2       = True
+  | n == 3       = True
+  | rem n 2 == 0 = False
+  | otherwise    = primeHelper n 3
+
+primeHelper :: Int -> Int -> Bool
+primeHelper n cur
+  | rem n cur == 0  = False
+  | (cur * cur) > n = True
+  | otherwise       = primeHelper n (cur + 2)
+
+--32
+gcd' :: Int -> Int -> Int
+gcd' x y
+  | rem big small == 0 = small
+  | otherwise          = gcd' (big - small) small
+    where
+      big = max x y
+      small = min x y
