@@ -168,3 +168,13 @@ gcd' x y
     where
       big = max x y
       small = min x y
+
+--33
+coprime' :: Int -> Int -> Bool
+coprime' x y
+  | gcd' x y == 1 = True
+  | otherwise     = False
+
+--34
+totientPhi ::  Int -> Int
+totientPhi n = length $ filter (coprime' n) [1..n]
