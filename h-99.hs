@@ -178,3 +178,17 @@ coprime' x y
 --34
 totientPhi ::  Int -> Int
 totientPhi n = length $ filter (coprime' n) [1..n]
+
+--35
+primeFactorize :: Int -> [Int]
+primeFactorize n
+  | n == 1    = []
+  | isPrime n = [n]
+  | otherwise = q : primeFactorize (div n q)
+    where q = head [x | x <- [2..n], isPrime x, rem n x == 0]
+
+--36 
+pfMult :: Int -> [(Int, Int)]
+pfMult n = map (\xs -> (length xs, head xs)) $ pack (primeFactorize n)
+
+  
